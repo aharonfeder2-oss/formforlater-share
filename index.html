@@ -13,42 +13,107 @@
   :root{
     --ink:#0C1014;--ink-raised:#131920;--rule:#212A34;--rule-strong:#2E3A46;
     --paper:#E9E4D9;--paper-dim:#A8AFB8;--paper-faint:#6B7683;
-    --brass:#C9873A;--brass-dim:#8A5D28;
+    --brass:#C9873A;--brass-dim:#8A5D28;--verdigris:#5E9A8A;
     --font-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
     --font-ui:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;
     --font-mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,monospace;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--font-ui);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:560px;margin:0 auto;padding:88px 16px 80px}
+  .wrap{max-width:760px;margin:0 auto;padding:72px 20px 80px}
   .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-faint);font-weight:600}
-  h1{font-family:var(--font-display);font-size:1.75rem;margin:10px 0 0}
+  h1{font-family:var(--font-display);font-size:1.85rem;line-height:1.2;margin:10px 0 0}
+  h2{font-family:var(--font-display);font-size:1.1rem;margin:0 0 8px;color:var(--paper)}
   p{color:var(--paper-dim);line-height:1.65;margin:16px 0 0}
-  .lede{color:var(--paper);font-size:15px}
+  .lede{color:var(--paper);font-size:15.5px}
+
+  /* Drawing beside the text on a wide screen, above it on a narrow one. */
+  .hero{display:flex;gap:36px;align-items:flex-start;margin-top:8px}
+  .hero-text{flex:1 1 auto;min-width:0}
+  .hero-art{flex:0 0 auto;width:190px;margin-top:26px}
+  @media (max-width:640px){
+    .hero{flex-direction:column-reverse;gap:20px}
+    .hero-art{width:150px;margin:0 auto}
+  }
+  .hero-art svg{width:100%;height:auto;display:block}
+
   .shape{margin:28px 0 0;padding:14px 16px;border:1px solid var(--rule);border-radius:6px;background:var(--ink-raised)}
   .shape .label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-faint);font-weight:600}
   .shape code{display:block;margin-top:8px;font-family:var(--font-mono);font-size:12px;color:var(--paper-dim);word-break:break-all;line-height:1.7}
   .shape code b{color:var(--brass);font-weight:600}
-  .rule{margin:32px 0 0;padding-top:20px;border-top:1px solid var(--rule)}
-  .quiet{color:var(--paper-faint);font-size:13px}
+
+  .about{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--rule)}
+  .about p:first-of-type{margin-top:12px}
+  .more{margin-top:20px}
   a{color:var(--brass)}
   a:hover{color:var(--paper)}
+  .quiet{color:var(--paper-faint);font-size:13px}
   :focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <span class="eyebrow">Form For Later</span>
-  <h1>This address only opens share links.</h1>
 
-  <p class="lede">There is nothing to see here on its own. If somebody sent you
-  a link to read their form answers, the link you followed is probably
-  incomplete &mdash; chat apps and email clients often cut long links in half,
-  and what is left is just the address of this page.</p>
+  <div class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Form For Later</span>
+      <h1>This address only opens share links.</h1>
 
-  <p><strong>Ask the sender to send you the whole link.</strong> Pasting it into
-  the address bar directly, rather than clicking it, avoids the same thing
-  happening again.</p>
+      <p class="lede">There is nothing to see here on its own. If somebody sent
+      you a link to read their form answers, the link you followed is probably
+      incomplete &mdash; chat apps and email clients often cut long links in
+      half, and what is left is just the address of this page.</p>
+
+      <p><strong>Ask the sender to send you the whole link.</strong> Pasting it
+      into the address bar directly, rather than clicking it, avoids the same
+      thing happening again.</p>
+    </div>
+
+    <!-- A part-filled paper form. Drawn by hand in path data: slightly off
+         square, lines that do not quite meet, because a ruled illustration
+         would look like a system diagram rather than a sheet of paper. -->
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 190 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- sheet -->
+        <path d="M17 12 C 15 9, 20 7, 24 7 L163 10 C167 10, 168 14, 167 18
+                 L172 214 C172 219, 169 223, 164 222 L23 228 C18 228, 15 225, 16 220 Z"
+              fill="#131920" stroke="#2E3A46" stroke-width="2.2" stroke-linejoin="round"/>
+        <!-- turned corner, bottom right -->
+        <path d="M172 214 L150 226 L164 222 Z" fill="#0C1014" stroke="#2E3A46" stroke-width="1.6" stroke-linejoin="round"/>
+
+        <!-- title rule -->
+        <path d="M31 34 C 60 32, 92 33, 118 31" stroke="#C9873A" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M31 44 C 50 43, 66 44, 79 43" stroke="#6B7683" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- field 1: filled -->
+        <path d="M30 66 C 48 65, 60 66, 71 65" stroke="#6B7683" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M30 76 C 62 74, 100 76, 152 74" stroke="#2E3A46" stroke-width="1.6"/>
+        <path d="M34 71 C 44 68, 52 73, 62 69 C 70 66, 78 72, 88 69" stroke="#5E9A8A" stroke-width="2.4" stroke-linecap="round"/>
+
+        <!-- field 2: filled -->
+        <path d="M30 98 C 44 97, 54 98, 64 97" stroke="#6B7683" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M30 108 C 62 106, 100 108, 152 106" stroke="#2E3A46" stroke-width="1.6"/>
+        <path d="M34 103 C 46 100, 58 105, 70 101 C 82 98, 96 104, 110 100" stroke="#5E9A8A" stroke-width="2.4" stroke-linecap="round"/>
+
+        <!-- field 3: half filled, the pen stops -->
+        <path d="M30 130 C 46 129, 58 130, 69 129" stroke="#6B7683" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M30 140 C 62 138, 100 140, 152 138" stroke="#2E3A46" stroke-width="1.6"/>
+        <path d="M34 135 C 42 132, 50 137, 58 134" stroke="#5E9A8A" stroke-width="2.4" stroke-linecap="round"/>
+
+        <!-- field 4: empty -->
+        <path d="M30 162 C 43 161, 52 162, 61 161" stroke="#6B7683" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M30 172 C 62 170, 100 172, 152 170" stroke="#2E3A46" stroke-width="1.6"/>
+
+        <!-- field 5: empty -->
+        <path d="M30 194 C 47 193, 59 194, 70 193" stroke="#6B7683" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M30 204 C 62 202, 100 204, 152 202" stroke="#2E3A46" stroke-width="1.6"/>
+
+        <!-- tick against the two that are done -->
+        <path d="M158 66 L162 71 L170 60" stroke="#5E9A8A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M158 98 L162 103 L170 92" stroke="#5E9A8A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
 
   <div class="shape">
     <span class="label">A complete link looks like this</span>
@@ -59,16 +124,35 @@
   the answers, encrypted, and the key that unlocks them. That is why a
   truncated link cannot be repaired &mdash; and why we cannot look yours up for
   you. Nothing sent through a share link is stored on this server. It never
-  arrives here at all: browsers do not send the part of a web address after
-  the <code>#</code>, so this page only ever receives a request for a file, and
-  the unlocking happens inside your own browser.</p>
+  arrives here at all: browsers do not send the part of a web address after the
+  <code>#</code>, so this page only ever receives a request for a file, and the
+  unlocking happens inside your own browser.</p>
 
-  <div class="rule">
-    <p class="quiet">Form For Later is a browser extension that saves what you
-    have typed into a long form so you can put it back later, and hand it to
-    someone else through a link that expires. You do not need it installed to
-    read a link somebody sent you.</p>
+  <div class="about">
+    <span class="eyebrow">Why you were sent one of these</span>
+    <h2>Form For Later</h2>
+
+    <p>Form For Later is a browser extension for people filling in long online
+    forms &mdash; a visa application, a mortgage, a benefits claim, a job
+    application. It saves what you have already typed so you can put it back
+    later, instead of losing an hour's work to a timed-out session or a form
+    that forgets you.</p>
+
+    <p>Sometimes the person filling one in needs somebody else to see it: an
+    accountant, a caseworker, a relative helping with the paperwork. Rather
+    than emailing their answers around, they can send a link like the one you
+    were given. The answers are encrypted in their browser before the link
+    exists, they choose field by field what goes in, and the link stops working
+    on a date they set. You do not need the extension installed to read one.</p>
+
+    <p class="more"><a href="https://formforlater.com">More about Form For Later
+    &rarr;</a></p>
   </div>
+
+  <p class="quiet">Everything the extension saves stays on the device it was
+  saved on. There is no account, and no copy of your answers on any server of
+  ours.</p>
+
 </div>
 </body>
 </html>
