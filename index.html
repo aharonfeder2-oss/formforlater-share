@@ -11,12 +11,11 @@
      share.formforlater.com — what the bare domain serves.
 
      Someone lands here because a chat app cut a long link in half, and
-     they're confused about a link involving their own data. Same tokens
-     and type as the landing page and the privacy policy — precision
-     instrument, not warm document — because the fastest way to calm
-     someone down here is the same move those pages make: show exactly
-     what happened and let it be checked, rather than reassure in the
-     abstract.
+     they're confused about a link involving their own data. Same glass-
+     and-neon system as the rest of the site. Glass is used in exactly
+     two places that earn it: the diagram, because it's the thing being
+     explained, and the closing card, because it's this page's one
+     invitation to look further. Everything else stays flat.
 
      share.html, next door, keeps its own separate dark palette — it
      displays somebody's real answers and is styled to feel like the
@@ -27,16 +26,24 @@
      ------------------------------------------------------------------ */
 
   :root{
-    --ground:#0A0C0F;
-    --surface:#101317;
-    --sunk:#06070A;
-    --ink:#E8ECEE;
-    --ink-soft:#99A3AA;
-    --ink-faint:#737D87;
-    --rule:#1B1F24;
-    --rule-strong:#262C33;
-    --accent:#4FD8E8;
-    --accent-dim:#2C7C87;
+    --ground:#0A0A14;
+    --surface:#12131F;
+    --sunk:#06060C;
+    --ink:#F3F5FF;
+    --ink-soft:#B9C0DC;
+    --ink-faint:#9AA3C4;
+    --rule:rgba(255,255,255,0.09);
+    --rule-strong:rgba(255,255,255,0.18);
+
+    --neon-blue:#4F8CFF;
+    --neon-blue-soft:#8FB4FF;
+    --neon-violet:#B26CFF;
+    --neon-violet-soft:#C98CFF;
+    --on-neon:#0A0A14;
+
+    --glass-bg:linear-gradient(155deg, rgba(255,255,255,0.10), rgba(255,255,255,0.025));
+    --glass-border:rgba(255,255,255,0.16);
+    --glass-shadow:0 24px 70px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.14);
 
     --font-ui:-apple-system,"Segoe UI Variable Text","Segoe UI","Helvetica Neue",Arial,sans-serif;
     --font-mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,Menlo,monospace;
@@ -45,7 +52,13 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{
-    margin:0;background:var(--ground);color:var(--ink-soft);
+    margin:0;
+    background:
+      radial-gradient(600px circle at 88% 6%, rgba(79,140,255,0.20), transparent 60%),
+      radial-gradient(560px circle at 6% 55%, rgba(178,108,255,0.16), transparent 60%),
+      radial-gradient(620px circle at 85% 92%, rgba(79,140,255,0.14), transparent 60%),
+      var(--ground);
+    color:var(--ink-soft);
     font-family:var(--font-ui);font-size:1.0625rem;line-height:1.65;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   }
@@ -62,10 +75,10 @@
     display:block;font-family:var(--font-mono);font-size:0.75rem;font-weight:600;letter-spacing:0.14em;
     text-transform:uppercase;color:var(--ink-faint);
   }
-  a{color:var(--accent);text-underline-offset:3px}
+  a{color:var(--neon-blue-soft);text-underline-offset:3px}
   a:hover{color:var(--ink)}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
-  code{font-family:var(--font-mono);font-size:0.92em;color:var(--accent);word-break:break-word}
+  :focus-visible{outline:2px solid var(--neon-blue-soft);outline-offset:3px;border-radius:2px}
+  code{font-family:var(--font-mono);font-size:0.92em;color:var(--neon-blue-soft);word-break:break-word}
 
   /* ---- masthead ---- */
   .masthead{
@@ -73,55 +86,61 @@
     flex-wrap:wrap;padding:26px 0 0;
   }
   .wordmark{font-family:var(--font-ui);font-size:1rem;font-weight:800;color:var(--ink);text-decoration:none}
-  .wordmark:hover{color:var(--accent)}
+  .wordmark:hover{color:var(--neon-blue-soft)}
   .masthead a.back{font-size:0.8125rem;color:var(--ink-faint);text-decoration:none;font-family:var(--font-mono)}
   .masthead a.back:hover{color:var(--ink)}
 
   header.title{padding:clamp(40px,7vw,72px) 0 0}
   .intro{font-size:1.1875rem;line-height:1.55;color:var(--ink-soft);margin-top:22px;max-width:46ch}
 
-  /* ---- the diagram: what actually happened ---- */
-  /* Same idiom as the landing hero's three-panel drawing: exact rects,
-     hairline corner brackets, a monospace readout beneath each one. Here
-     there are two panels instead of three, and no arrow between them —
-     the whole point is that nothing flows from the left one to the
-     right. The torn edge is a zigzag standing in for a clean corner
-     bracket, on the two edges that face the gap. */
-  .art{
-    margin-top:36px;padding:clamp(14px,3vw,24px);overflow-x:auto;
-    background:var(--surface);border:1px solid var(--rule-strong);border-radius:2px;
+  .glass{
+    background:var(--glass-bg);
+    -webkit-backdrop-filter:blur(26px) saturate(160%);
+    backdrop-filter:blur(26px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--glass-shadow);
+    border-radius:18px;
   }
+
+  /* ---- the diagram: what actually happened ---- */
+  .art{margin-top:36px;padding:clamp(16px,3vw,26px);overflow-x:auto}
   .art svg{width:100%;height:auto;display:block;min-width:380px}
 
-  /* ---- callouts (shared with the privacy policy) ---- */
+  /* ---- callouts ---- */
   .note{
-    margin-top:30px;padding:18px 20px;background:var(--surface);
-    border-left:2px solid var(--accent-dim);border-radius:0 2px 2px 0;
+    margin-top:30px;padding:18px 20px;background:rgba(79,140,255,0.06);
+    border-left:2px solid var(--neon-blue);border-radius:0 10px 10px 0;
   }
   .note h2{font-size:1.0625rem}
   .note p{font-size:0.9375rem}
   .plain{
     margin-top:20px;padding:16px 18px;background:var(--sunk);
-    border:1px solid var(--rule-strong);border-radius:2px;
+    border:1px solid var(--rule-strong);border-radius:10px;
   }
   .plain p{margin:0;font-size:0.9375rem}
 
   /* ---- "a complete link looks like this" ---- */
   .linkshape{
     margin-top:32px;padding:18px 20px;background:var(--surface);
-    border:1px solid var(--rule-strong);border-radius:2px;
+    border:1px solid var(--rule-strong);border-radius:12px;
   }
-  /* Direct child only, so this doesn't also restyle the inline <code>#</code>
-     inside the gloss paragraph below it. */
   .linkshape > code{
     display:block;margin-top:10px;font-family:var(--font-mono);font-size:12.5px;
     color:var(--ink-soft);word-break:break-all;line-height:1.75;
   }
-  .linkshape > code b{color:var(--accent);font-weight:600}
+  .linkshape > code b{color:var(--neon-blue-soft);font-weight:600}
   .linkshape p{margin-top:12px;font-size:0.8125rem;color:var(--ink-faint);line-height:1.6}
 
-  .about{margin-top:52px;padding-top:32px;border-top:1px solid var(--rule)}
+  /* ---- the closing card: this page's one real invitation ---- */
+  .about{margin-top:52px;padding:clamp(24px,4vw,32px);display:flex;flex-direction:column;gap:6px}
   .about p{font-size:0.9375rem}
+  .about .btn{
+    display:inline-block;margin-top:20px;padding:12px 20px;border-radius:12px;
+    font-size:0.8125rem;font-weight:700;letter-spacing:0.01em;text-decoration:none;
+    background:linear-gradient(100deg, var(--neon-blue), #6C7BFF);color:var(--on-neon);
+    box-shadow:0 8px 26px rgba(79,140,255,0.32);
+  }
+  .about .btn:hover{color:var(--on-neon)}
 
   footer{
     margin-top:clamp(52px,8vw,80px);border-top:1px solid var(--rule);
@@ -153,54 +172,56 @@
       link itself.</p>
     </header>
 
-    <div class="art" aria-hidden="true">
+    <div class="art glass" aria-hidden="true">
       <svg viewBox="0 0 460 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
         <defs>
           <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
-            <rect width="8" height="8" fill="#171B1F"/>
-            <rect width="4" height="8" fill="#20262C"/>
+            <rect width="8" height="8" fill="#171827"/>
+            <rect width="4" height="8" fill="#20223A"/>
           </pattern>
+          <linearGradient id="tear1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4F8CFF"/><stop offset="1" stop-color="#8F79FF"/></linearGradient>
+          <linearGradient id="tear2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8F79FF"/><stop offset="1" stop-color="#B26CFF"/></linearGradient>
         </defs>
 
         <!-- panel A: the part that reached you -->
-        <rect x="10" y="16" width="205" height="120" fill="#0D1013"/>
-        <path d="M10 30 V16 H24" stroke="#262C33" stroke-width="1.5"/>
-        <path d="M24 136 H10 V122" stroke="#262C33" stroke-width="1.5"/>
+        <rect x="10" y="16" width="205" height="120" fill="#0D0E1C" rx="10"/>
+        <path d="M10 30 V16 H24" stroke="#2A2C42" stroke-width="1.5"/>
+        <path d="M24 136 H10 V122" stroke="#2A2C42" stroke-width="1.5"/>
         <path d="M215 16 L219 26 L211 36 L219 46 L211 56 L219 66 L211 76 L219 86 L211 96 L219 106 L211 116 L219 126 L215 136"
-              stroke="#5B6570" stroke-width="1.4" stroke-linejoin="round"/>
+              stroke="url(#tear1)" stroke-width="1.6" stroke-linejoin="round"/>
 
-        <rect x="26" y="34" width="40" height="3" fill="#262C33"/>
-        <text x="26" y="54" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#E8ECEE">share.formforlater.com</text>
-        <rect x="26" y="72" width="40" height="3" fill="#262C33"/>
-        <text x="26" y="92" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#E8ECEE">/share.html</text>
-        <rect x="196" y="84" width="2" height="10" fill="#4FD8E8"/>
+        <rect x="26" y="34" width="40" height="3" fill="#2A2C42"/>
+        <text x="26" y="54" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#F3F5FF">share.formforlater.com</text>
+        <rect x="26" y="72" width="40" height="3" fill="#2A2C42"/>
+        <text x="26" y="92" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#F3F5FF">/share.html</text>
+        <rect x="196" y="84" width="2" height="10" fill="#4F8CFF"/>
 
         <!-- the break -->
-        <line x1="223" y1="68" x2="229" y2="84" stroke="#737D87" stroke-width="1.6" stroke-linecap="round"/>
-        <line x1="233" y1="68" x2="239" y2="84" stroke="#737D87" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="223" y1="68" x2="229" y2="84" stroke="#9AA3C4" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="233" y1="68" x2="239" y2="84" stroke="#9AA3C4" stroke-width="1.6" stroke-linecap="round"/>
 
         <!-- panel B: the part that never left the sender's browser -->
-        <rect x="245" y="16" width="205" height="120" fill="#0D1013"/>
-        <path d="M436 16 H450 V30" stroke="#262C33" stroke-width="1.5"/>
-        <path d="M450 122 V136 H436" stroke="#262C33" stroke-width="1.5"/>
+        <rect x="245" y="16" width="205" height="120" fill="#0D0E1C" rx="10"/>
+        <path d="M436 16 H450 V30" stroke="#2A2C42" stroke-width="1.5"/>
+        <path d="M450 122 V136 H436" stroke="#2A2C42" stroke-width="1.5"/>
         <path d="M245 16 L241 26 L249 36 L241 46 L249 56 L241 66 L249 76 L241 86 L249 96 L241 106 L249 116 L241 126 L245 136"
-              stroke="#5B6570" stroke-width="1.4" stroke-linejoin="round"/>
+              stroke="url(#tear2)" stroke-width="1.6" stroke-linejoin="round"/>
 
-        <rect x="261" y="34" width="40" height="3" fill="#262C33"/>
-        <rect x="261" y="44" width="130" height="10" fill="url(#hatch)" stroke="#262C33" stroke-width="1"/>
-        <rect x="261" y="66" width="40" height="3" fill="#262C33"/>
-        <rect x="261" y="76" width="100" height="10" fill="url(#hatch)" stroke="#262C33" stroke-width="1"/>
-        <text x="261" y="110" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#3A424A">&hellip;</text>
+        <rect x="261" y="34" width="40" height="3" fill="#2A2C42"/>
+        <rect x="261" y="44" width="130" height="10" rx="2" fill="url(#hatch)" stroke="#2A2C42" stroke-width="1"/>
+        <rect x="261" y="66" width="40" height="3" fill="#2A2C42"/>
+        <rect x="261" y="76" width="100" height="10" rx="2" fill="url(#hatch)" stroke="#2A2C42" stroke-width="1"/>
+        <text x="261" y="110" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#454863">&hellip;</text>
 
         <!-- readout labels -->
-        <text x="112" y="156" text-anchor="middle" font-family="Cascadia Mono, Consolas, monospace" font-size="10" letter-spacing="1.4" fill="#737D87">REACHED YOU</text>
-        <text x="347" y="156" text-anchor="middle" font-family="Cascadia Mono, Consolas, monospace" font-size="10" letter-spacing="1.4" fill="#737D87">NEVER ARRIVED</text>
+        <text x="112" y="156" text-anchor="middle" font-family="Cascadia Mono, Consolas, monospace" font-size="10" letter-spacing="1.4" fill="#9AA3C4">REACHED YOU</text>
+        <text x="347" y="156" text-anchor="middle" font-family="Cascadia Mono, Consolas, monospace" font-size="10" letter-spacing="1.4" fill="#9AA3C4">NEVER ARRIVED</text>
       </svg>
     </div>
 
     <div class="note">
       <h2>Ask for it again, in full.</h2>
-      <p>Paste it into the address bar rather than tapping it &mdash; that&rsquo;s
+      <p>Paste it into the address bar rather than tapping it &mdash; that's
       usually what splits it a second time too.</p>
     </div>
 
@@ -215,25 +236,30 @@
     <div class="plain">
       <p><strong>Nothing of yours is sitting on this server, and nothing has
       leaked.</strong> The missing half never reached us. It was never sent,
-      never stored here, and can&rsquo;t be recovered on your behalf &mdash; a
+      never stored here, and can't be recovered on your behalf &mdash; a
       share link only ever unlocks inside the browser holding the whole
       thing.</p>
     </div>
 
-    <div class="about">
+    <div class="about glass">
       <span class="eyebrow">Why you were sent one</span>
-      <h2>A place to keep long forms, not lose them.</h2>
-      <p>Form For Later is a browser extension for anyone filling in a long
-      online form &mdash; a visa application, a mortgage, a benefits claim. It
-      keeps what you&rsquo;ve typed so a timed-out session doesn&rsquo;t cost
-      you the evening.</p>
-      <p>Sometimes the person filling one in needs someone else to see it
-      &mdash; an accountant, a caseworker, a relative helping with the
-      paperwork. A link like the one you were sent carries part of a record:
-      encrypted before it left their browser, chosen field by field, and set
-      to stop working on a date they picked.</p>
-      <p><a href="https://formforlater.com">More about Form For Later
-      &rarr;</a></p>
+      <h2>Someone just handed you part of a form, safely.</h2>
+      <p>FormForLater is a free browser extension for anyone stuck filling
+      in a long online form &mdash; a visa application, a mortgage, a
+      benefits claim, a job application that times out if you look away too
+      long. It saves what you've already typed, right on your own device,
+      so closing the tab doesn't cost you the hour you just spent.</p>
+      <p>Somebody used it to help you. When a form needs a second pair of
+      eyes &mdash; an accountant, a caseworker, a relative doing the
+      paperwork with you &mdash; FormForLater can hand over part of a saved
+      record instead of the whole thing, copy-pasted into an email. They
+      chose exactly which answers to include, it was encrypted on their
+      device before it went anywhere, and it's set to stop working on a
+      date they picked. That's what the other half of this link was
+      carrying.</p>
+      <p>If you're the one filling out long forms next, it works the same
+      way for you.</p>
+      <a class="btn" href="https://formforlater.com">See how it works &rarr;</a>
     </div>
 
   </div>
