@@ -10,34 +10,35 @@
   /* ------------------------------------------------------------------
      share.formforlater.com — what the bare domain serves.
 
-     Someone arrives here because a chat app cut a link in half, and they
-     are confused about a link involving their own data. So: calm, short,
-     one instruction, and an early answer to "has something leaked?".
+     Someone lands here because a chat app cut a long link in half, and
+     they're confused about a link involving their own data. Same tokens
+     and type as the landing page and the privacy policy — precision
+     instrument, not warm document — because the fastest way to calm
+     someone down here is the same move those pages make: show exactly
+     what happened and let it be checked, rather than reassure in the
+     abstract.
 
-     Same palette and type as the landing page, deliberately lighter in
-     weight. share.html, next door, stays dark — it shows somebody's real
-     answers and should feel like the extension. Light is for the pages
-     that are only ever about the product.
+     share.html, next door, keeps its own separate dark palette — it
+     displays somebody's real answers and is styled to feel like the
+     extension itself, not like this site.
 
      Single theme by choice, every colour painted explicitly. System
      fonts. No script, no analytics, no external asset.
      ------------------------------------------------------------------ */
 
   :root{
-    --ground:#F5F3EE;
-    --surface:#FBFAF7;
-    --sunk:#EFEDE6;
-    --ink:#17211E;
-    --ink-soft:#4A5551;
-    --ink-faint:#6B7671;
-    --rule:#DFDAD1;
-    --rule-strong:#CFC8BC;
-    --accent:#2F6B5B;
-    --accent-wash:#E7EEEA;
-    --brass:#A8702A;
+    --ground:#0A0C0F;
+    --surface:#101317;
+    --sunk:#06070A;
+    --ink:#E8ECEE;
+    --ink-soft:#99A3AA;
+    --ink-faint:#737D87;
+    --rule:#1B1F24;
+    --rule-strong:#262C33;
+    --accent:#4FD8E8;
+    --accent-dim:#2C7C87;
 
-    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-    --font-ui:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --font-ui:-apple-system,"Segoe UI Variable Text","Segoe UI","Helvetica Neue",Arial,sans-serif;
     --font-mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,Menlo,monospace;
   }
 
@@ -45,72 +46,91 @@
   html{-webkit-text-size-adjust:100%}
   body{
     margin:0;background:var(--ground);color:var(--ink-soft);
-    font-family:var(--font-ui);font-size:1.0625rem;line-height:1.62;
+    font-family:var(--font-ui);font-size:1.0625rem;line-height:1.65;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   }
+  .page{max-width:1000px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  .doc{max-width:66ch}
 
-  .page{max-width:680px;margin:0 auto;padding:clamp(56px,10vw,104px) clamp(20px,5vw,32px) 72px}
+  h1,h2{color:var(--ink);font-family:var(--font-ui);font-weight:800;letter-spacing:-0.015em;text-wrap:balance;margin:0}
+  h1{font-size:clamp(1.9rem,5vw,2.625rem);line-height:1.1;margin:14px 0 0}
+  h2{font-size:1.375rem;line-height:1.2;margin:0}
+  p{margin:16px 0 0}
+  strong,b{color:var(--ink);font-weight:700}
 
   .eyebrow{
-    display:block;font-size:0.8125rem;font-weight:650;letter-spacing:0.13em;
+    display:block;font-family:var(--font-mono);font-size:0.75rem;font-weight:600;letter-spacing:0.14em;
     text-transform:uppercase;color:var(--ink-faint);
   }
-  h1{
-    font-family:var(--font-display);font-weight:600;color:var(--ink);
-    font-size:clamp(1.85rem,5vw,2.5rem);line-height:1.1;letter-spacing:-0.015em;
-    text-wrap:balance;margin:12px 0 0;
-  }
-  h2{
-    font-family:var(--font-ui);font-weight:650;color:var(--ink);
-    font-size:1rem;line-height:1.35;margin:0;
-  }
-  p{margin:18px 0 0}
-  .lede{font-size:1.1875rem;line-height:1.55;color:var(--ink-soft);max-width:46ch}
   a{color:var(--accent);text-underline-offset:3px}
   a:hover{color:var(--ink)}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  code{font-family:var(--font-mono);font-size:0.92em;color:var(--accent);word-break:break-word}
 
-  /* The instruction, given its own weight — it is the only thing on this
-     page the reader can act on. */
-  .do{
-    margin-top:30px;padding:20px 22px;background:var(--accent-wash);
-    border-left:3px solid var(--accent);border-radius:0 3px 3px 0;
+  /* ---- masthead ---- */
+  .masthead{
+    display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    flex-wrap:wrap;padding:26px 0 0;
   }
-  .do p{margin:8px 0 0;font-size:0.9375rem;color:var(--ink-soft)}
+  .wordmark{font-family:var(--font-ui);font-size:1rem;font-weight:800;color:var(--ink);text-decoration:none}
+  .wordmark:hover{color:var(--accent)}
+  .masthead a.back{font-size:0.8125rem;color:var(--ink-faint);text-decoration:none;font-family:var(--font-mono)}
+  .masthead a.back:hover{color:var(--ink)}
 
-  .shape{
-    margin-top:32px;padding:16px 18px;background:var(--surface);
-    border:1px solid var(--rule-strong);border-radius:3px;
+  header.title{padding:clamp(40px,7vw,72px) 0 0}
+  .intro{font-size:1.1875rem;line-height:1.55;color:var(--ink-soft);margin-top:22px;max-width:46ch}
+
+  /* ---- the diagram: what actually happened ---- */
+  /* Same idiom as the landing hero's three-panel drawing: exact rects,
+     hairline corner brackets, a monospace readout beneath each one. Here
+     there are two panels instead of three, and no arrow between them —
+     the whole point is that nothing flows from the left one to the
+     right. The torn edge is a zigzag standing in for a clean corner
+     bracket, on the two edges that face the gap. */
+  .art{
+    margin-top:36px;padding:clamp(14px,3vw,24px);overflow-x:auto;
+    background:var(--surface);border:1px solid var(--rule-strong);border-radius:2px;
   }
-  .shape .label{
-    display:block;font-size:0.75rem;font-weight:650;letter-spacing:0.11em;
-    text-transform:uppercase;color:var(--ink-faint);
+  .art svg{width:100%;height:auto;display:block;min-width:380px}
+
+  /* ---- callouts (shared with the privacy policy) ---- */
+  .note{
+    margin-top:30px;padding:18px 20px;background:var(--surface);
+    border-left:2px solid var(--accent-dim);border-radius:0 2px 2px 0;
   }
-  /* Direct child only. A bare `.shape code` also catches the inline <code>#</code>
-     inside the gloss below and throws it onto a line of its own, which breaks
-     that sentence into three pieces. */
-  .shape > code{
+  .note h2{font-size:1.0625rem}
+  .note p{font-size:0.9375rem}
+  .plain{
+    margin-top:20px;padding:16px 18px;background:var(--sunk);
+    border:1px solid var(--rule-strong);border-radius:2px;
+  }
+  .plain p{margin:0;font-size:0.9375rem}
+
+  /* ---- "a complete link looks like this" ---- */
+  .linkshape{
+    margin-top:32px;padding:18px 20px;background:var(--surface);
+    border:1px solid var(--rule-strong);border-radius:2px;
+  }
+  /* Direct child only, so this doesn't also restyle the inline <code>#</code>
+     inside the gloss paragraph below it. */
+  .linkshape > code{
     display:block;margin-top:10px;font-family:var(--font-mono);font-size:12.5px;
     color:var(--ink-soft);word-break:break-all;line-height:1.75;
   }
-  .shape > code b{color:var(--brass);font-weight:600}
-  code{font-family:var(--font-mono);font-size:0.92em;color:var(--brass)}
-  .shape .gloss{margin-top:12px;font-size:0.8125rem;color:var(--ink-faint);line-height:1.6}
-
-  .split{display:flex;gap:36px;align-items:flex-start;margin-top:16px}
-  .split-text{flex:1 1 auto;min-width:0}
-  .split-art{flex:0 0 auto;width:132px;margin-top:6px}
-  .split-art svg{width:100%;height:auto;display:block}
-  @media (max-width:620px){
-    .split{flex-direction:column-reverse;gap:20px}
-    .split-art{width:108px}
-  }
+  .linkshape > code b{color:var(--accent);font-weight:600}
+  .linkshape p{margin-top:12px;font-size:0.8125rem;color:var(--ink-faint);line-height:1.6}
 
   .about{margin-top:52px;padding-top:32px;border-top:1px solid var(--rule)}
   .about p{font-size:0.9375rem}
-  .more{margin-top:22px}
 
-  .foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--rule);font-size:0.8125rem;color:var(--ink-faint)}
+  footer{
+    margin-top:clamp(52px,8vw,80px);border-top:1px solid var(--rule);
+    padding:28px 0 68px;font-size:0.8125rem;color:var(--ink-faint);font-family:var(--font-mono);
+    display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:space-between;align-items:baseline;
+  }
+  footer a{color:var(--ink-faint);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -118,84 +138,110 @@
 
 <div class="page">
 
-  <div class="split">
-    <div class="split-text">
-      <span class="eyebrow">Form For Later</span>
-      <h1>This link is missing its second half.</h1>
-      <p class="lede">You have reached the address a share link points at, but
-      not the link itself. Chat apps and email clients often cut long links in
-      two, and this is the part that survived.</p>
-    </div>
+  <div class="masthead">
+    <a class="wordmark" href="https://formforlater.com">Form For Later</a>
+    <a class="back" href="https://formforlater.com">&larr; formforlater.com</a>
+  </div>
 
-    <!-- The same sheet as the landing page, reduced: enough to say "this is
-         about a form" without competing with the instruction. -->
-    <div class="split-art" aria-hidden="true">
-      <svg viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
-        <path d="M11 19 C9 15, 14 13, 19 13 L115 16 C120 16, 122 20, 121 25
-                 L125 165 C125 171, 121 175, 115 174 L18 178 C12 178, 9 174, 10 169 Z"
-              fill="#FBFAF7" stroke="#CFC8BC" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M125 165 L107 174 L115 174 Z" fill="#EFEDE6" stroke="#CFC8BC" stroke-width="1.4" stroke-linejoin="round"/>
+  <div class="doc">
 
-        <path d="M22 37 C43 35, 65 36, 82 35" stroke="#A8702A" stroke-width="3.1" stroke-linecap="round"/>
+    <header class="title">
+      <span class="eyebrow">share.formforlater.com</span>
+      <h1>This link stopped halfway.</h1>
+      <p class="intro">Chat apps and email clients often cut a long link in
+      two. What loaded here is the address it pointed to &mdash; not the
+      link itself.</p>
+    </header>
 
-        <path d="M21 60 C34 59, 43 60, 51 59" stroke="#B9C0BC" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M21 69 C44 67, 72 69, 108 67" stroke="#E4DFD6" stroke-width="1.4"/>
-        <path d="M24 64 C31 61, 37 66, 45 63 C51 60, 57 65, 64 62" stroke="#2F6B5B" stroke-width="2.1" stroke-linecap="round"/>
+    <div class="art" aria-hidden="true">
+      <svg viewBox="0 0 460 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+        <defs>
+          <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+            <rect width="8" height="8" fill="#171B1F"/>
+            <rect width="4" height="8" fill="#20262C"/>
+          </pattern>
+        </defs>
 
-        <path d="M21 92 C32 91, 40 92, 47 91" stroke="#B9C0BC" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M21 101 C44 99, 72 101, 108 99" stroke="#E4DFD6" stroke-width="1.4"/>
-        <path d="M24 96 C33 93, 42 98, 51 95 C59 92, 68 97, 77 94" stroke="#2F6B5B" stroke-width="2.1" stroke-linecap="round"/>
+        <!-- panel A: the part that reached you -->
+        <rect x="10" y="16" width="205" height="120" fill="#0D1013"/>
+        <path d="M10 30 V16 H24" stroke="#262C33" stroke-width="1.5"/>
+        <path d="M24 136 H10 V122" stroke="#262C33" stroke-width="1.5"/>
+        <path d="M215 16 L219 26 L211 36 L219 46 L211 56 L219 66 L211 76 L219 86 L211 96 L219 106 L211 116 L219 126 L215 136"
+              stroke="#5B6570" stroke-width="1.4" stroke-linejoin="round"/>
 
-        <!-- the stroke that stops, which is the whole subject of this page -->
-        <path d="M21 124 C33 123, 41 124, 49 123" stroke="#B9C0BC" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M21 133 C44 131, 72 133, 108 131" stroke="#E4DFD6" stroke-width="1.4"/>
-        <path d="M24 128 C30 125, 35 130, 41 127" stroke="#2F6B5B" stroke-width="2.1" stroke-linecap="round"/>
+        <rect x="26" y="34" width="40" height="3" fill="#262C33"/>
+        <text x="26" y="54" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#E8ECEE">share.formforlater.com</text>
+        <rect x="26" y="72" width="40" height="3" fill="#262C33"/>
+        <text x="26" y="92" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#E8ECEE">/share.html</text>
+        <rect x="196" y="84" width="2" height="10" fill="#4FD8E8"/>
 
-        <path d="M21 156 C31 155, 38 156, 45 155" stroke="#B9C0BC" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M21 165 C44 163, 72 165, 108 163" stroke="#E4DFD6" stroke-width="1.4"/>
+        <!-- the break -->
+        <line x1="223" y1="68" x2="229" y2="84" stroke="#737D87" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="233" y1="68" x2="239" y2="84" stroke="#737D87" stroke-width="1.6" stroke-linecap="round"/>
+
+        <!-- panel B: the part that never left the sender's browser -->
+        <rect x="245" y="16" width="205" height="120" fill="#0D1013"/>
+        <path d="M436 16 H450 V30" stroke="#262C33" stroke-width="1.5"/>
+        <path d="M450 122 V136 H436" stroke="#262C33" stroke-width="1.5"/>
+        <path d="M245 16 L241 26 L249 36 L241 46 L249 56 L241 66 L249 76 L241 86 L249 96 L241 106 L249 116 L241 126 L245 136"
+              stroke="#5B6570" stroke-width="1.4" stroke-linejoin="round"/>
+
+        <rect x="261" y="34" width="40" height="3" fill="#262C33"/>
+        <rect x="261" y="44" width="130" height="10" fill="url(#hatch)" stroke="#262C33" stroke-width="1"/>
+        <rect x="261" y="66" width="40" height="3" fill="#262C33"/>
+        <rect x="261" y="76" width="100" height="10" fill="url(#hatch)" stroke="#262C33" stroke-width="1"/>
+        <text x="261" y="110" font-family="Cascadia Mono, Consolas, monospace" font-size="13" fill="#3A424A">&hellip;</text>
+
+        <!-- readout labels -->
+        <text x="112" y="156" text-anchor="middle" font-family="Cascadia Mono, Consolas, monospace" font-size="10" letter-spacing="1.4" fill="#737D87">REACHED YOU</text>
+        <text x="347" y="156" text-anchor="middle" font-family="Cascadia Mono, Consolas, monospace" font-size="10" letter-spacing="1.4" fill="#737D87">NEVER ARRIVED</text>
       </svg>
     </div>
+
+    <div class="note">
+      <h2>Ask for it again, in full.</h2>
+      <p>Paste it into the address bar rather than tapping it &mdash; that&rsquo;s
+      usually what splits it a second time too.</p>
+    </div>
+
+    <div class="linkshape">
+      <span class="eyebrow">A complete link looks like this</span>
+      <code>https://share.formforlater.com/share.html<b>#d=</b>&hellip;<b>&amp;k=</b>&hellip;</code>
+      <p>Everything after <code>#</code> is the message itself &mdash; the
+      answers, encrypted, and the key that opens them. Browsers never send
+      that part anywhere, which is also why it runs long enough to get cut.</p>
+    </div>
+
+    <div class="plain">
+      <p><strong>Nothing of yours is sitting on this server, and nothing has
+      leaked.</strong> The missing half never reached us. It was never sent,
+      never stored here, and can&rsquo;t be recovered on your behalf &mdash; a
+      share link only ever unlocks inside the browser holding the whole
+      thing.</p>
+    </div>
+
+    <div class="about">
+      <span class="eyebrow">Why you were sent one</span>
+      <h2>A place to keep long forms, not lose them.</h2>
+      <p>Form For Later is a browser extension for anyone filling in a long
+      online form &mdash; a visa application, a mortgage, a benefits claim. It
+      keeps what you&rsquo;ve typed so a timed-out session doesn&rsquo;t cost
+      you the evening.</p>
+      <p>Sometimes the person filling one in needs someone else to see it
+      &mdash; an accountant, a caseworker, a relative helping with the
+      paperwork. A link like the one you were sent carries part of a record:
+      encrypted before it left their browser, chosen field by field, and set
+      to stop working on a date they picked.</p>
+      <p><a href="https://formforlater.com">More about Form For Later
+      &rarr;</a></p>
+    </div>
+
   </div>
 
-  <div class="do">
-    <h2>Ask the sender to send it again, in full.</h2>
-    <p>Pasting the link straight into the address bar, rather than clicking it,
-    usually avoids the same thing happening twice.</p>
-  </div>
-
-  <div class="shape">
-    <span class="label">A complete link looks like this</span>
-    <code>https://share.formforlater.com/share.html<b>#d=</b>&hellip;<b>&amp;k=</b>&hellip;</code>
-    <p class="gloss">Everything after the <code>#</code> is the message: the
-    answers, encrypted, and the key that opens them. It is usually several
-    hundred characters long, which is exactly why it gets cut.</p>
-  </div>
-
-  <p><strong>Nothing of yours is sitting on this server</strong>, and nothing
-  has leaked. Browsers never send the part of a web address after the
-  <code>#</code> &mdash; so the missing half never reached us, was never stored
-  here, and cannot be looked up or recovered on your behalf. A share link is
-  only ever unlocked inside the browser of the person holding the whole thing.</p>
-
-  <div class="about">
-    <span class="eyebrow">Why you were sent one</span>
-    <p>Form For Later is a browser extension for people filling in long online
-    forms &mdash; a visa application, a mortgage, a benefits claim. It keeps
-    what you have already typed so you can put it back later, instead of losing
-    an evening&rsquo;s work to a session that timed out.</p>
-    <p>Sometimes the person filling one in needs somebody else to see it: an
-    accountant, a caseworker, a relative helping with the paperwork. Rather
-    than emailing their answers around, they can send a link like the one you
-    were given. It is encrypted before it leaves their browser, they choose
-    field by field what goes in, and it stops working on a date they set. You
-    do not need anything installed to read one.</p>
-    <p class="more"><a href="https://formforlater.com">More about Form For Later
-    &rarr;</a></p>
-  </div>
-
-  <p class="foot">Everything the extension saves stays on the device it was
-  saved on. No account, and no copy of anyone&rsquo;s answers on any server of
-  ours.</p>
+  <footer>
+    <span>Form For Later &mdash; kept on the device you filled it in on.</span>
+    <span><a href="https://formforlater.com/privacy">Privacy policy</a></span>
+  </footer>
 
 </div>
 </body>
